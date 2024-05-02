@@ -35,6 +35,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
+          cd my-explorer
           docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:latest .
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:latest
 
