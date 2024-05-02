@@ -1,7 +1,7 @@
 FROM node:18-alpine
 WORKDIR /app
 
-RUN apk add --no-cache python3 make g++
+RUN apk --no-cache --virtual build-dependencies add python make g++
 RUN yarn global add node-gyp
 
 COPY package.json yarn.lock ./
