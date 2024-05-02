@@ -1,6 +1,8 @@
 [submodule "docker-hadoop"]
 	path = docker-hadoop
 	url = https://github.com/usersina/docker-hadoop
+	branch = main
 [submodule "cassandra-spark-docker"]
 	path = cassandra-spark-docker
 	url = https://github.com/usersina/cassandra-spark-docker
+	branch = main
