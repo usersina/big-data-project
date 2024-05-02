@@ -6,13 +6,15 @@ This project illustrates an approach of creating an end to end pipeline for a bi
 
 To start things off, you need to to have the following setup/installed:
 
+<!-- - A local kubernetes cluster (e.g. [minikube](https://minikube.sigs.k8s.io/docs/start/))
+- [fission](https://fission.io/docs/installation/) -->
+
 - [docker & docker compose](https://www.docker.com/)
-- A local kubernetes cluster (e.g. [minikube](https://minikube.sigs.k8s.io/docs/start/))
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/)
 - [helm](https://helm.sh/)
-- [fission](https://fission.io/docs/installation/)
 - [Task](https://taskfile.dev/usage/) (optional)
 - [Make](https://www.gnu.org/software/make/) (optional)
+- [node](https://nodejs.org/en)
 
 ## Getting started
 
@@ -64,6 +66,26 @@ TRUNCATE sales_analytics;
 ```
 
 You can verify using the `SELECT` command above in the `cqlsh` to see the populated table.
+
+### Explore the data
+
+Copy the `.env.example`
+
+```bash
+(cd my-explorer && cp .env.example .env.local)
+```
+
+Install the dependencies
+
+```bash
+(cd my-explorer && yarn install)
+```
+
+Run the Next.JS application
+
+```bash
+(cd my-explorer && yarn dev)
+```
 
 ## Resources
 
