@@ -1,8 +1,5 @@
-FROM node:18-alpine
+FROM node:18-buster
 WORKDIR /app
-
-RUN apk --no-cache --virtual build-dependencies add python3 make g++
-RUN yarn global add node-gyp
 
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
