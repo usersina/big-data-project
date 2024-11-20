@@ -121,6 +121,29 @@ Run the Next.JS application
 (cd my-explorer && yarn dev)
 ```
 
+## Clean up
+
+To clean up the services, you can run the following commands:
+
+- Stop the `spark` and `cassandra` cluster
+
+```bash
+(cd cassandra-spark-docker && task down)
+```
+
+- Stop the `hadoop` cluster
+
+```bash
+(cd docker-hadoop && make down)
+```
+
+Note that this does not remove the data stored in the volumes. You can remove the volumes by substituting the `down` command with `delete`.
+
+```bash
+(cd docker-hadoop && make delete)
+(cd cassandra-spark-docker && task delete)
+```
+
 ## Resources
 
 - <https://stackoverflow.com/questions/35762459/add-jar-to-standalone-pyspark>
