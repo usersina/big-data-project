@@ -18,6 +18,12 @@ To start things off, you need to to have the following setup/installed:
 
 ## Getting started
 
+### Clone the submodules
+
+```bash
+git submodule update --init --recursive
+```
+
 ### Start the services
 
 The steps below are just an overview, and the full documentation can be found in the submodules themselves.
@@ -42,7 +48,7 @@ Open a shell directly to cassandra
 (cd cassandra-spark-docker && task cqlsh)
 ```
 
-Create the `cleaned_data` keyspace and the `salbes_alanytics` table
+Create the `cleaned_data` keyspace and the `sales_analytics` table
 
 ```sql
 CREATE KEYSPACE cleaned_data WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
@@ -61,11 +67,39 @@ TRUNCATE sales_analytics;
 
 ### Run the pyspark process
 
+Make sure that you also download the `purchases.txt` file if not already.
+See the [quick start section of docker-hadoop](docker-hadoop/README.md#quick-start) for more details.
+This will make sure it is mounted to the container's filesystem where HDFS can access it.
+
+Now, copy the file to the HDFS cluster
+
+```bash
+(cd docker-hadoop && make shell)
+
+$ ls -l /data/purchases.txt
+# -rw-r--r-- 1 root root 211312924 Nov 20 15:17 /data/purchases.txt
+$ hdfs dfs -mkdir /input
+$ hdfs dfs -copyFromLocal /data/purchases.txt /input/
+$ hdfs dfs -ls /input
+# -rw-r--r--   3 root supergroup  211312924 2024-11-20 15:26 /input/purchases.txt
+```
+
+Now, run the pyspark process
+
 ```bash
 (cd cassandra-spark-docker/examples && task build-python && task run-python)
 ```
 
-You can verify using the `SELECT` command above in the `cqlsh` to see the populated table.
+You can verify using the `SELECT` command to see the populated table.
+
+```bash
+(cd cassandra-spark-docker && task cqlsh)
+```
+
+```sql
+USE cleaned_data;
+SELECT * FROM sales_analytics;
+```
 
 ### Explore the data
 
