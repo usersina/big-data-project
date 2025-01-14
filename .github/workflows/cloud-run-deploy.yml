@@ -7,10 +7,10 @@ env:
 on:
   push:
     branches:
-      - main
+      - off
   pull_request:
     branches:
-      - main
+      - off
 
 jobs:
   dockerize-and-deploy:

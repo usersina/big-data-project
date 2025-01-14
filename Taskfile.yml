@@ -1,0 +1,15 @@
+version: "3"
+
+silent: true
+
+includes:
+  colors: Taskfile.colors.yml
+
+tasks:
+  init:submodules:
+    desc: "Initialize submodules so that they are cloned and checked out to the main branch"
+    cmds:
+      - printf "{{.COLOR_GREEN}}Initializing submodules...{{.COLOR_RESET}}\n"
+      - git submodule update --init --recursive
+      - git submodule foreach git checkout main
+      - printf "{{.COLOR_GREEN}}Submodules initialized.{{.COLOR_RESET}}\n"

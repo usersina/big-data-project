@@ -10,19 +10,28 @@ To start things off, you need to to have the following setup/installed:
 - [fission](https://fission.io/docs/installation/) -->
 
 - [docker & docker compose](https://www.docker.com/)
-- [kubectl](https://kubernetes.io/docs/reference/kubectl/)
-- [helm](https://helm.sh/)
+  <!-- - [kubectl](https://kubernetes.io/docs/reference/kubectl/) -->
+  <!-- - [helm](https://helm.sh/) -->
 - [Task](https://taskfile.dev/usage/) (optional)
 - [Make](https://www.gnu.org/software/make/) (optional)
 - [node](https://nodejs.org/en)
 
 ## Getting started
 
-### Clone the submodules
+After cloning the repository, run the following command to initialize the submodules:
 
 ```bash
-git submodule update --init --recursive
+task init:submodules
 ```
+
+## Quick start (automated)
+
+**todo**
+
+## Manual execution flow example - "sales_analytics"
+
+<details>
+    <summary>Click to expand</summary>
 
 ### Start the services
 
@@ -121,6 +130,8 @@ Run the Next.JS application
 (cd my-explorer && yarn dev)
 ```
 
+</details>
+
 ## Clean up
 
 To clean up the services, you can run the following commands:
@@ -142,6 +153,22 @@ Note that this does not remove the data stored in the volumes. You can remove th
 ```bash
 (cd docker-hadoop && make delete)
 (cd cassandra-spark-docker && task delete)
+```
+
+## Submodules
+
+- Adding a submodule
+
+```bash
+git submodule add -b main <remote-url>
+```
+
+- Deleting a submodule
+
+```bash
+git submodule deinit -f -- <submodule-path>
+rm -rf .git/modules/<submodule-path>
+git rm -f <submodule-path>
 ```
 
 ## Resources

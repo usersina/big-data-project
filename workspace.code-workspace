@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "root"
+    },
+    {
+      "path": "docker-hadoop",
+      "name": "docker-hadoop"
+    },
+    {
+      "path": "cassandra-spark-docker",
+      "name": "cassandra-spark-docker"
+    },
+    {
+      "path": "my-explorer",
+      "name": "my-explorer"
+    }
+  ]
+}
