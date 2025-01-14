@@ -5,6 +5,10 @@
       "name": "root"
     },
     {
+      "path": "kafka",
+      "name": "kafka"
+    },
+    {
       "path": "docker-hadoop",
       "name": "docker-hadoop"
     },
