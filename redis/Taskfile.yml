@@ -1,0 +1,15 @@
+version: "3"
+silent: true
+
+tasks:
+  up:
+    cmd: docker compose up -d
+
+  stop:
+    cmd: docker compose stop
+
+  down:
+    cmd: docker compose down
+
+  delete:
+    cmd: docker compose down -v

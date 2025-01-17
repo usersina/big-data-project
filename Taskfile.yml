@@ -20,17 +20,28 @@ tasks:
       - cd docker-hadoop && make build && make up
       - cd cassandra-spark-docker && go-task up
       - cd kafka && go-task up
+      - cd redis && go-task up
 
   stop:
     desc: "Stop the full stack"
     cmds:
+      - cd redis && go-task stop
       - cd kafka && go-task stop
       - cd cassandra-spark-docker && go-task stop
       - cd docker-hadoop && make stop
 
+  down:
+    desc: "Stop and remove the full stack"
+    cmds:
+      - cd redis && go-task down
+      - cd kafka && go-task down
+      - cd cassandra-spark-docker && go-task down
+      - cd docker-hadoop && make down
+
   delete:
     desc: "Delete the full stack"
     cmds:
+      - cd redis && go-task delete
       - cd kafka && go-task delete
       - cd cassandra-spark-docker && go-task delete
       - cd docker-hadoop && make delete

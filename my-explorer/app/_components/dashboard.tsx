@@ -11,7 +11,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import { Transaction } from '../_types'
+import { DashboardProps, Transaction } from '../_types'
 
 interface StatCardProps {
   title: string
@@ -125,7 +125,22 @@ const TransactionChart = ({
   )
 }
 
-const Dashboard = ({ transactions = [] }: { transactions: Transaction[] }) => {
+const CacheIndicator = ({ isCached }: { isCached: boolean }) => (
+  <div
+    className={`inline-flex items-center px-3 py-1 rounded-full text-sm ${
+      isCached ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
+    }`}
+  >
+    <span
+      className={`w-2 h-2 rounded-full mr-2 ${
+        isCached ? 'bg-green-500' : 'bg-blue-500'
+      }`}
+    ></span>
+    {isCached ? 'Cached Data' : 'Fresh Data'}
+  </div>
+)
+
+const Dashboard = ({ transactions = [], isCached = false }: DashboardProps) => {
   const stats = React.useMemo(() => {
     if (!transactions || transactions.length === 0) {
       return {
@@ -147,9 +162,12 @@ const Dashboard = ({ transactions = [] }: { transactions: Transaction[] }) => {
 
   return (
     <main className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8 text-blue-600">
-        E-Commerce Dashboard
-      </h1>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-blue-600 mb-2">
+          E-Commerce Dashboard
+        </h1>
+        <CacheIndicator isCached={isCached} />
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <StatCard title="Total Transactions" value={stats.totalTransactions} />

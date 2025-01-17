@@ -6,7 +6,7 @@ export interface Transaction {
   user_id: number
 }
 
-export interface ChartDataPoint {
-  time: string
-  amount: number
+export interface DashboardProps {
+  transactions: Transaction[]
+  isCached?: boolean
 }
