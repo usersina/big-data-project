@@ -1,0 +1,7 @@
+version: "3"
+silent: true
+
+tasks:
+  start:
+    desc: "Start the consumer"
+    cmd: poetry run python main.py

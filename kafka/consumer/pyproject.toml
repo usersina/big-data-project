@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "consumer"
+version = "0.1.0"
+description = ""
+authors = ["usersina <benna.anis2@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+hdfs = "^2.7.3"
+kafka-python-ng = "^2.2.3"
+six = "^1.17.0"
+pyhdfs-client = "^0.1.3"
+pyhdfs = "^0.3.1"
+colorlog = "^6.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
