@@ -1,24 +1,24 @@
 {
   "folders": [
     {
-      "path": ".",
-      "name": "root"
+      "name": "root",
+      "path": "."
     },
     {
-      "path": "kafka",
-      "name": "kafka"
+      "name": "kafka",
+      "path": "kafka"
     },
     {
-      "path": "docker-hadoop",
-      "name": "docker-hadoop"
+      "name": "docker-hadoop",
+      "path": "docker-hadoop"
     },
     {
-      "path": "cassandra-spark-docker",
-      "name": "cassandra-spark-docker"
+      "name": "cassandra-spark-docker",
+      "path": "cassandra-spark-docker"
     },
     {
-      "path": "my-explorer",
-      "name": "my-explorer"
+      "name": "my-explorer",
+      "path": "my-explorer"
     }
   ]
 }

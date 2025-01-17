@@ -106,3 +106,15 @@ Implement APIs to query data from Cassandra and Redis. Visualize the data using 
 ### Web Application (Next.js)
 
 This is a high-level overview and example code snippets to get you started. You can expand on this by adding more features, handling edge cases, and optimizing the pipeline.
+
+---
+
+## Progress
+
+- [x] Create project outline
+- [x] Implement data ingestion with Kafka
+- [x] Implement data storage with Hadoop
+- [ ] Implement data processing with Spark
+- [ ] Implement data storage with Cassandra
+- [ ] Implement data caching with Redis
+- [ ] Implement data visualization with Next.js
