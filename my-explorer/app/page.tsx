@@ -1,4 +1,5 @@
 import cassandra from 'cassandra-driver'
+import Dashboard from './_components/dashboard'
 
 export default async function Home() {
   if (!process.env.CASSANDRA_URL) {
@@ -10,54 +11,26 @@ export default async function Home() {
     )
   }
 
-  // const PlainTextAuthProvider = cassandra.auth.PlainTextAuthProvider
   const client = new cassandra.Client({
     contactPoints: [process.env.CASSANDRA_URL],
-    localDataCenter: 'datacenter1', // https://stackoverflow.com/a/59379008/10543130
-    // authProvider: new cassandra.auth.PlainTextAuthProvider(
-    //   'cassandra',
-    //   'cassandra'
-    // ),
+    localDataCenter: 'datacenter1',
     keyspace: 'cleaned_data',
   })
-  const query = 'SELECT * FROM ecommerce_transactions;'
 
   try {
-    const result = await client.execute(query)
-    console.log(result)
+    const result = await client.execute('SELECT * FROM ecommerce_transactions;')
+    await client.shutdown()
 
-    return (
-      <main className="flex flex-col items-center justify-center p-10 h-screen bg-gray-100">
-        <h2 className="text-3xl font-bold mb-5 text-blue-600 italic">
-          E-Commerce Transactions
-        </h2>
-        <div className="overflow-auto h-1/2 w-full bg-white rounded-xl shadow-md">
-          <table className="table-auto w-full">
-            <thead>
-              <tr>
-                <th className="sticky top-0 px-4 py-2 text-blue-600 bg-white">
-                  Product ID
-                </th>
-                <th className="sticky top-0 px-4 py-2 text-blue-600 bg-white">
-                  Amount
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {result.rows.map((row, index) => (
-                <tr
-                  key={index}
-                  className={index % 2 === 0 ? 'bg-gray-200' : ''}
-                >
-                  <td className="border px-4 py-2">{row.product_id}</td>
-                  <td className="border px-4 py-2">{row.amount}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </main>
-    )
+    // Transform Cassandra rows into plain objects
+    const transactions = result.rows.map((row) => ({
+      transaction_id: row.transaction_id?.toString(),
+      amount: Number(row.amount),
+      product_id: row.product_id,
+      timestamp: row.timestamp?.toISOString(),
+      user_id: row.user_id,
+    }))
+
+    return <Dashboard transactions={transactions} />
   } catch (err) {
     const error = err as Error
     return (
