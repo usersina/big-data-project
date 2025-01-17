@@ -20,7 +20,7 @@ export default async function Home() {
     // ),
     keyspace: 'cleaned_data',
   })
-  const query = 'SELECT * FROM sales_analytics;'
+  const query = 'SELECT * FROM ecommerce_transactions;'
 
   try {
     const result = await client.execute(query)
@@ -29,17 +29,17 @@ export default async function Home() {
     return (
       <main className="flex flex-col items-center justify-center p-10 h-screen bg-gray-100">
         <h2 className="text-3xl font-bold mb-5 text-blue-600 italic">
-          Sales Analytics
+          E-Commerce Transactions
         </h2>
         <div className="overflow-auto h-1/2 w-full bg-white rounded-xl shadow-md">
           <table className="table-auto w-full">
             <thead>
               <tr>
                 <th className="sticky top-0 px-4 py-2 text-blue-600 bg-white">
-                  Store
+                  Product ID
                 </th>
                 <th className="sticky top-0 px-4 py-2 text-blue-600 bg-white">
-                  Total Sales
+                  Amount
                 </th>
               </tr>
             </thead>
@@ -49,8 +49,8 @@ export default async function Home() {
                   key={index}
                   className={index % 2 === 0 ? 'bg-gray-200' : ''}
                 >
-                  <td className="border px-4 py-2">{row.store}</td>
-                  <td className="border px-4 py-2">{row.total_sales}</td>
+                  <td className="border px-4 py-2">{row.product_id}</td>
+                  <td className="border px-4 py-2">{row.amount}</td>
                 </tr>
               ))}
             </tbody>

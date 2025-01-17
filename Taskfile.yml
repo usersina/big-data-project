@@ -39,3 +39,8 @@ tasks:
     desc: "Start an interactive shell in the HDFS container"
     cmds:
       - cd docker-hadoop && make shell
+
+  cqlsh:
+    desc: "Start an interactive shell in the Cassandra container"
+    cmds:
+      - cd cassandra-spark-docker && go-task cqlsh
