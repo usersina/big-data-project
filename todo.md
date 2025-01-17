@@ -114,7 +114,6 @@ This is a high-level overview and example code snippets to get you started. You 
 - [x] Create project outline
 - [x] Implement data ingestion with Kafka
 - [x] Implement data storage with Hadoop
-- [ ] Implement data processing with Spark
-- [ ] Implement data storage with Cassandra
+- [x] Implement data processing with Spark & store in Cassandra
 - [ ] Implement data caching with Redis
 - [ ] Implement data visualization with Next.js

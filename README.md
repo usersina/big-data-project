@@ -94,7 +94,7 @@ $ hdfs dfs -ls /input
 Now, run the pyspark process
 
 ```bash
-(cd cassandra-spark-docker/examples && task build-python && task run-python)
+(cd cassandra-spark-docker/examples && task build && task run SCRIPT=process_purchases.py)
 ```
 
 You can verify using the `SELECT` command to see the populated table.
