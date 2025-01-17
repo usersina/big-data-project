@@ -13,3 +13,29 @@ tasks:
       - git submodule update --init --recursive
       - git submodule foreach git checkout main
       - printf "{{.COLOR_GREEN}}Submodules initialized.{{.COLOR_RESET}}\n"
+
+  up:
+    desc: "Start the full stack"
+    cmds:
+      - cd docker-hadoop && make build && make up
+      - cd cassandra-spark-docker && go-task up
+      - cd kafka && go-task up
+
+  stop:
+    desc: "Stop the full stack"
+    cmds:
+      - cd kafka && go-task stop
+      - cd cassandra-spark-docker && go-task stop
+      - cd docker-hadoop && make stop
+
+  delete:
+    desc: "Delete the full stack"
+    cmds:
+      - cd kafka && go-task delete
+      - cd cassandra-spark-docker && go-task delete
+      - cd docker-hadoop && make delete
+
+  hdfs:shell:
+    desc: "Start an interactive shell in the HDFS container"
+    cmds:
+      - cd docker-hadoop && make shell

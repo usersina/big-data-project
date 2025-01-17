@@ -24,14 +24,12 @@ After cloning the repository, run the following command to initialize the submod
 task init:submodules
 ```
 
-## Quick start (automated)
+## Exploring the project
 
 **todo**
 
-## Manual execution flow example - "sales_analytics"
-
 <details>
-    <summary>Click to expand</summary>
+    <summary>Manual execution flow example - "sales_analytics"</summary>
 
 ### Start the services
 
@@ -134,25 +132,16 @@ Run the Next.JS application
 
 ## Clean up
 
-To clean up the services, you can run the following commands:
-
-- Stop the `spark` and `cassandra` cluster
+To clean up the services, you can run the following command:
 
 ```bash
-(cd cassandra-spark-docker && task down)
+task down
 ```
 
-- Stop the `hadoop` cluster
+Note that this does not remove the data stored in the volumes. You can remove the volumes by using the `delete` command:
 
 ```bash
-(cd docker-hadoop && make down)
-```
-
-Note that this does not remove the data stored in the volumes. You can remove the volumes by substituting the `down` command with `delete`.
-
-```bash
-(cd docker-hadoop && make delete)
-(cd cassandra-spark-docker && task delete)
+task delete
 ```
 
 ## Submodules
@@ -175,3 +164,6 @@ git rm -f <submodule-path>
 
 - <https://stackoverflow.com/questions/35762459/add-jar-to-standalone-pyspark>
 - <https://anant.us/blog/modern-business/data-operations-with-spark-and-cassandra/>
+
+**Note:** Best practices have mostly been thrown out the window for the sake of simplicity and brevity.
+This is not a production-ready setup.
