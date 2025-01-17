@@ -64,6 +64,3 @@ volumes:
 networks:
   kafka-net:
     driver: bridge
-  hadoop-net:
-    name: hadoop_network
-    external: true
