@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import signal
 import sys
 
 import colorlog
@@ -55,6 +56,25 @@ try:
 except Exception as e:
     logger.error("Failed to connect to HDFS namenode at %s: %s", HDFS_NAMENODE, e)
     sys.exit(1)
+
+# Flag to ensure shutdown is only executed once
+shutting_down = False
+
+
+# Signal handler for graceful shutdown
+def signal_handler(sig, frame):
+    global shutting_down
+    if shutting_down:
+        logger.error("Force shutdown initiated, exiting...")
+        sys.exit(1)
+    else:
+        shutting_down = True
+        logger.warning("Interrupt received, shutting down...")
+        consumer.close()
+        sys.exit(0)
+
+
+signal.signal(signal.SIGINT, signal_handler)
 
 # Read messages from Kafka and write to HDFS
 logger.info("Starting to consume messages from Kafka topic 'ecommerce_transactions'")
